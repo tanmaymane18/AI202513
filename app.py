@@ -225,6 +225,7 @@ try:
     extract_file(dataFile)
 except Exception as e:
     print(e)
+    st.write(e)
     pass
 
 #x, y = load_data(params, dataFile.name)
