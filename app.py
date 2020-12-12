@@ -132,7 +132,7 @@ def create_clf(params):
                     clf=MultinomialNB(alpha=v)
     return clf
 
-def preprocess(X, min_ngram, max_ngram, vec, clf_type=None):
+def preprocess(X, min_ngram, max_ngram, vec):
     ps = PorterStemmer()
     Stopwords = set(stopwords.words('english'))
     st.write(X)
