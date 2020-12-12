@@ -135,6 +135,7 @@ def create_clf(params):
 def preprocess(X, min_ngram, max_ngram, vec, clf_type=None):
     ps = PorterStemmer()
     Stopwords = set(stopwords.words('english'))
+    st.write(X)
     X = X.apply(lambda x: re.sub(r'From:\s\S+@\S+', '', x))
     X = X.apply(lambda x: re.sub(r'To:\s\S+@\S+', '', x))
     X = X.apply(lambda x: re.sub(r'Cc:\s\S+@\S+', '', x))
