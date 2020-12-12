@@ -21,7 +21,8 @@ import os
 import pyunpack
 from outlook_msg import Message
 from english_words import english_words_set
-
+import nltk
+nltk.download('stopwords')
 
 def get_params():
     st.sidebar.header('Upload Your Data')
