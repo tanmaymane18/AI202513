@@ -103,7 +103,9 @@ def display_model_summary(params):
 def create_clf(params):
     model = params.get('model_params', 'Default')
     if model == 'Default':
-        pass
+        with open('./default/model.pkl', 'br') as f:
+            clf = pickle.load(f)
+        f.close()
     else:
         if len(model)>1:
             st.text('Voting')
