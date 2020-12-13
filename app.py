@@ -238,7 +238,7 @@ try:
     clf = create_clf(params)
     print(clf)
     st.text(clf)
-    if params.get('model_params', 'Default') != 'Default':
+    if params.get('model_params', 'Default') == 'Default':
         try:
             (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name)
             st.text("Size of training data: "+str(len(x_train)))
