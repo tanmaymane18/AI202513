@@ -238,9 +238,10 @@ try:
     clf = create_clf(params)
     print(clf)
     st.text(clf)
-    (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name)
-    st.text("Size of training data: "+str(len(x_train)))
-    st.text("Size of Validation data: "+str(len(x_test)))
+    if params.get('model_params', 'Default') != 'Default':
+        (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name)
+        st.text("Size of training data: "+str(len(x_train)))
+        st.text("Size of Validation data: "+str(len(x_test)))
 
     if st.checkbox(label='Train'):
         clf = train(clf, x_train, x_test, y_train, y_test)
