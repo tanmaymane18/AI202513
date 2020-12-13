@@ -244,7 +244,7 @@ try:
             st.text("Size of training data: "+str(len(x_train)))
             st.text("Size of Validation data: "+str(len(x_test)))
         except:
-            st.write('Upload data if you want to train...')
+            st.markdown('**Upload data if you want to train...**')
     else:
         (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name)
         st.text("Size of training data: "+str(len(x_train)))
