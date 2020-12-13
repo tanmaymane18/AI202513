@@ -223,44 +223,17 @@ def extract_file(dataFile):
     pyunpack.Archive('./' + file_name).extractall('.')
     st.write('Extracted')
 
-#st.multiselect("Select Categories for Classification", cats)
-dataFile, params = get_params()
-try:
-    extract_file(dataFile)
-except Exception as e:
-    print(e)
-    pass
 
-#x, y = load_data(params, dataFile.name)
-#load_data(params, dataFile.name)
-display_model_summary(params)
-try:
-    clf = create_clf(params)
-    print(clf)
-    st.text(clf)
-    if params.get('model_params', 'Default') == 'Default':
-        try:
-            (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name)
-            st.text("Size of training data: "+str(len(x_train)))
-            st.text("Size of Validation data: "+str(len(x_test)))
-        except:
-            st.markdown('**Upload data if you want to train...**')
-    else:
+def default_view(dataFile, clf):
+    if dataFile:
         (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name)
         st.text("Size of training data: "+str(len(x_train)))
         st.text("Size of Validation data: "+str(len(x_test)))
 
-    if dataFile:
         if st.checkbox(label='Train'):
             clf = train(clf, x_train, x_test, y_train, y_test)
             st.markdown('**Import new Data**')
 
-            try:
-                file = st.file_uploader(label='')
-                extract_file(file)
-            except:
-                pass
-            
             output_model = pickle.dumps(clf)
             b64_model = base64.b64encode(output_model).decode()
             href_model = f'<a href="data:file/output_model;base64,{b64_model}" download="myfile.pkl">Download Trained Model .pkl File</a>'
@@ -272,5 +245,57 @@ try:
             st.markdown(href_feature, unsafe_allow_html=True)
 
 
+
+
+#st.multiselect("Select Categories for Classification", cats)
+dataFile, params = get_params()
+try:
+    extract_file(dataFile)
 except Exception as e:
     print(e)
+    pass
+
+#x, y = load_data(params, dataFile.name)
+#load_data(params, dataFile.name)
+display_model_summary(params)
+clf = create_clf(params)
+print(clf)
+st.text(clf)
+
+if params.get('model_params', 'Default') == 'Default':
+    default_view(dataFile, clf)
+else:
+    own_model_view(dataFile, clf)
+
+
+
+# try:
+#     if params.get('model_params', 'Default') == 'Default':
+#         try:
+            
+#         except:
+#             st.markdown('**Upload data if you want to train...**')
+#     else:
+#         (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name)
+#         st.text("Size of training data: "+str(len(x_train)))
+#         st.text("Size of Validation data: "+str(len(x_test)))
+
+#     if dataFile:
+#         if st.checkbox(label='Train'):
+#             clf = train(clf, x_train, x_test, y_train, y_test)
+#             st.markdown('**Import new Data**')
+
+#             output_model = pickle.dumps(clf)
+#             b64_model = base64.b64encode(output_model).decode()
+#             href_model = f'<a href="data:file/output_model;base64,{b64_model}" download="myfile.pkl">Download Trained Model .pkl File</a>'
+#             st.markdown(href_model, unsafe_allow_html=True)
+
+#             output_feature = pickle.dumps(feature_vec)
+#             b64_feature = base64.b64encode(output_feature).decode()
+#             href_feature = f'<a href="data:file/output_model;base64,{b64_feature}" download="myfile.pkl">Download Features .pkl File</a>'
+#             st.markdown(href_feature, unsafe_allow_html=True)
+
+
+
+# except Exception as e:
+#     print(e)
