@@ -46,17 +46,17 @@ def get_params():
         lr = st.sidebar.checkbox(label='Logistic Regression')
         st.sidebar.header('Hyperparameter Tuning')
     else:
-        '''st.sidebar.header('Hyperparameter Tuning')
-        svm_kernel = st.sidebar.selectbox(label='SVM Kernel', options=['rbf', 'linear', 'poly', 'sigmoid'])
-        svm_c = st.sidebar.slider(label='SVM C', min_value=1.0, max_value=10.0)
-        svm_param = (svm_kernel, svm_c)
-        model_params['svm'] = svm_param
-        lr_c = st.sidebar.slider(label='LR C', min_value=1.0, max_value=10.0)
-        lr_solver = st.sidebar.selectbox(label='LR Solver', options=['newton-cg', 'sag', 'saga', 'lbfgs'])
-        lr_param = (lr_solver, lr_c)
-        model_params['lr'] = lr_param
-        nb_alpha = st.sidebar.slider(label='NB Alpha', min_value=1.0, max_value=10.0)
-        model_params['nb'] = nb_alpha'''
+        #'''st.sidebar.header('Hyperparameter Tuning')
+        #svm_kernel = st.sidebar.selectbox(label='SVM Kernel', options=['rbf', 'linear', 'poly', 'sigmoid'])
+        #svm_c = st.sidebar.slider(label='SVM C', min_value=1.0, max_value=10.0)
+        #svm_param = (svm_kernel, svm_c)
+        #model_params['svm'] = svm_param
+        #lr_c = st.sidebar.slider(label='LR C', min_value=1.0, max_value=10.0)
+        #lr_solver = st.sidebar.selectbox(label='LR Solver', options=['newton-cg', 'sag', 'saga', 'lbfgs'])
+        #lr_param = (lr_solver, lr_c)
+        #model_params['lr'] = lr_param
+        #nb_alpha = st.sidebar.slider(label='NB Alpha', min_value=1.0, max_value=10.0)
+        #model_params['nb'] = nb_alpha'''
         pass
 
 
