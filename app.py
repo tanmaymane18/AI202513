@@ -215,7 +215,8 @@ def load_data(params, fileName, train=True, default=True):
         X, feature_vec = preprocess(df['body'], min_ngram, max_ngram, vec)
         
         Y = df['category'].astype('category').cat.codes
-        cat_codes = json.dumps(dict(enumerate(df['category'].astype('category').cat.categories)))
+        rt_cat_codes = dict(enumerate(df['category'].astype('category').cat.categories))
+        cat_codes = json.dumps(rt_cat_codes)
         st.write(cat_codes)
         #st.write(json.dumps(cat_codes))
         #cat_index = pd.Dataframe(dict(enumerate(df['category'].astype('category').cat.categories)))
@@ -226,7 +227,7 @@ def load_data(params, fileName, train=True, default=True):
         href = f'<a href="data:file/json;base64,{b64}" download="myfile.json">Download CategoiesIndex.json File</a>'
         st.markdown(href, unsafe_allow_html=True)
         #st.markdown('hello')
-        return train_test_split(X, Y, test_size=(100 - train_param) / 100, random_state=42, shuffle=True), feature_vec, json.load(cat_codes)
+        return train_test_split(X, Y, test_size=(100 - train_param) / 100, random_state=42, shuffle=True), feature_vec, rt_cat_codes
 
 #def load_new_data(fileName):
 
