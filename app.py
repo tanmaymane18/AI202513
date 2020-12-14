@@ -242,7 +242,7 @@ def make_predictions(predictFile, clf):
     body = []
     for file in os.listdir('./'+folder_name):
         emails.append(file)
-        msg = Message('./' + folder_name + '/' + cat + '/' + file)
+        msg = Message('./' + folder_name + '/'+ file)
         content = msg.body
         #st.text(content)
         body.append(content)
