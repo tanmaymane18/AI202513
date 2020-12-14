@@ -220,6 +220,7 @@ def load_data(params, fileName, train=True, default=True):
         b64 = base64.b64encode(cat_json.encode()).decode()  # some strings <-> bytes conversions necessary here
         href = f'<a href="data:file/json;base64,{b64}" download="myfile.pkl">Download CategoiesIndex.json File</a>'
         st.markdown(href, unsafe_allow_html=True)
+        st.markdown('hello')
         return train_test_split(X, Y, test_size=(100 - train_param) / 100, random_state=42, shuffle=True), feature_vec
 
 #def load_new_data(fileName):
