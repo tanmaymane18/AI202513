@@ -237,7 +237,7 @@ def extract_file(dataFile):
 
 def make_predictions(predictFile, clf):
     extract_file(predictFile)
-    folder_name = predictFile[:predictFile.index('.')]
+    folder_name = predictFile.name[:predictFile.name.index('.')]
     emails = []
     body = []
     for file in os.listdir('./'+folder_name):
