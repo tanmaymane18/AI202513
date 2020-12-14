@@ -1,8 +1,9 @@
-pyunpack==0.2.2
-english_words==1.0.3
-streamlit==0.69.2
+pandas==1.1.4
 outlook_msg==1.0.0
+english_words==1.0.3
 nltk==3.5
-pandas==1.1.3
+pyunpack==0.2.2
 scikit_learn==0.23.2
-patool==1.12
+streamlit==0.72.0
+ptool==1.12
+json
