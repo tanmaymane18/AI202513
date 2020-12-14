@@ -226,7 +226,7 @@ def load_data(params, fileName, train=True, default=True):
         href = f'<a href="data:file/json;base64,{b64}" download="myfile.json">Download CategoiesIndex.json File</a>'
         st.markdown(href, unsafe_allow_html=True)
         #st.markdown('hello')
-        return train_test_split(X, Y, test_size=(100 - train_param) / 100, random_state=42, shuffle=True), feature_vec
+        return train_test_split(X, Y, test_size=(100 - train_param) / 100, random_state=42, shuffle=True), feature_vec, cat_codes
 
 #def load_new_data(fileName):
 
@@ -246,7 +246,7 @@ def extract_file(dataFile):
 
 
 
-def make_predictions(predictFile, clf):
+def make_predictions(predictFile, clf, cat_codes):
     extract_file(predictFile)
     folder_name = predictFile.name[:predictFile.name.index('.')]
     emails = []
@@ -260,15 +260,19 @@ def make_predictions(predictFile, clf):
     df = pd.DataFrame(data=list(zip(emails, body)), columns=['email_name', 'body'])
     st.write(df.head())
     X=preprocess(df['body'], test=True)
-    Y = clf.predict(X)
-    st.write(Y)
+    Y = list(clf.predict(X))
+    Y = list(map(lambda x: cat_codes[int(x)], Y))
+    st.write(type(Y))
 
 
 
 def default_view(dataFile, clf):
+    f = open('./default/cat_codes.json')
+    cat_codes = json.load(f)
+    f.close()
     if dataFile:
         try:
-            (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name, train=True)
+            (x_train, x_test, y_train, y_test), feature_vec, cat_codes = load_data(params, dataFile.name, train=True)
             st.text("Size of training data: "+str(len(x_train)))
             st.text("Size of Validation data: "+str(len(x_test)))
 
@@ -289,12 +293,12 @@ def default_view(dataFile, clf):
             pass
     predictFile = st.file_uploader(label='.zip containing folder of emails (.msg)')
     if predictFile != None:
-        make_predictions(predictFile, clf)
+        make_predictions(predictFile, clf, cat_codes)
 
 def own_model_view(dataFile, clf):
     if dataFile:
         try:
-            (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name, train=True, default=False)
+            (x_train, x_test, y_train, y_test), feature_vec, cat_codes = load_data(params, dataFile.name, train=True, default=False)
             st.text("Size of training data: "+str(len(x_train)))
             st.text("Size of Validation data: "+str(len(x_test)))
 
