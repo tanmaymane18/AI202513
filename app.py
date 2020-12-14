@@ -14,7 +14,7 @@ from nltk.stem import PorterStemmer
 import re
 import pickle
 from datetime import datetime
-
+import json
 import streamlit as st
 import pandas as pd
 import os
@@ -215,7 +215,9 @@ def load_data(params, fileName, train=True, default=True):
         X, feature_vec = preprocess(df['body'], min_ngram, max_ngram, vec)
         
         Y = df['category'].astype('category').cat.codes
-        st.write(dict(enumerate(df['category'].astype('category').cat.categories)))
+        cat_codes = dict(enumerate(df['category'].astype('category').cat.categories))
+        st.write(cat_codes)
+        st.write(jason.dumps(cat_codes))
         #cat_index = pd.Dataframe(dict(enumerate(df['category'].astype('category').cat.categories)))
         #st.write(cat_index)
         #cat_json = cat_index.to_json(index=False)
