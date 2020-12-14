@@ -261,7 +261,10 @@ def make_predictions(predictFile, clf, cat_codes, feature_vec):
 
     X=preprocess(pd.Series(body), test=True, vocab=feature_vec)
     Y = list(clf.predict(X))
-    Y = list(map(lambda x: cat_codes[str(x)], Y))
+    try:
+        Y = list(map(lambda x: cat_codes[str(x)], Y))
+    except:
+        Y = list(map(lambda x: cat_codes[int(x)], Y))
     df = pd.DataFrame(data=list(zip(emails, body, Y)), columns=['email_name', 'body', 'Category'])
     return df
 
