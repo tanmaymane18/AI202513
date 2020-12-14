@@ -177,7 +177,7 @@ def train(clf, x_train, x_test, y_train, y_test):
     #st.pyplot(plot_decision_regions(x_train.values, y_train.values, clf=clf))
     return clf
 
-def load_data(params, fileName, train=True):
+def load_data(params, fileName, train=True, default=True):
     train_param = params['train_param']
     vec = params['vectorization']
     min_ngram, max_ngram = params['min_ngram'], params['max_ngram']
@@ -203,7 +203,9 @@ def load_data(params, fileName, train=True):
     #df.drop(columns=['index'], inplace=True)
     st.dataframe(df.head())
     st.write(df.describe())
+
     X, feature_vec = preprocess(df['body'], min_ngram, max_ngram, vec)
+    
     Y = df['category'].astype('category').cat.codes
     return train_test_split(X, Y, test_size=(100 - train_param) / 100, random_state=42, shuffle=True), feature_vec
 
@@ -226,7 +228,7 @@ def extract_file(dataFile):
 
 def default_view(dataFile, clf):
     if dataFile:
-        (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name)
+        (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name, train=True)
         st.text("Size of training data: "+str(len(x_train)))
         st.text("Size of Validation data: "+str(len(x_test)))
 
@@ -245,7 +247,7 @@ def default_view(dataFile, clf):
 
 def own_model_view(dataFile, clf):
     if dataFile:
-        (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name)
+        (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name, train=True, default=False)
         st.text("Size of training data: "+str(len(x_train)))
         st.text("Size of Validation data: "+str(len(x_test)))
 
