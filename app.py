@@ -215,8 +215,9 @@ def load_data(params, fileName, train=True, default=True):
         X, feature_vec = preprocess(df['body'], min_ngram, max_ngram, vec)
         
         Y = df['category'].astype('category').cat.codes
-        cat_index = pd.Dataframe(dict(enumerate(df['category'].astype('category').cat.categories)))
-        st.write(cat_index)
+        st.write(dict(enumerate(df['category'].astype('category').cat.categories)))
+        #cat_index = pd.Dataframe(dict(enumerate(df['category'].astype('category').cat.categories)))
+        #st.write(cat_index)
         #cat_json = cat_index.to_json(index=False)
         #st.write(cat_json)
         #b64 = base64.b64encode(cat_json.encode()).decode()  # some strings <-> bytes conversions necessary here
