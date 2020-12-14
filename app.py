@@ -228,6 +228,7 @@ def extract_file(dataFile):
 
 
 def default_view(dataFile, clf):
+    st.text(clf)
     if dataFile:
         try:
             (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name, train=True)
@@ -251,7 +252,7 @@ def default_view(dataFile, clf):
             pass
     predict_data = st.file_uploader(label='.zip containing folder of emails (.msg)')
     if predict_data != None:
-        st.write('test success')
+        df_predictions = make_predictions(predict_data)
 
 def own_model_view(dataFile, clf):
     if dataFile:
