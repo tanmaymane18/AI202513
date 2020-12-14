@@ -287,12 +287,12 @@ def default_view(dataFile, clf):
 
                 output_model = pickle.dumps(clf)
                 b64_model = base64.b64encode(output_model).decode()
-                href_model = f'<a href="data:file/output_model;base64,{b64_model}" download="myfile.pkl">Download Trained Model .pkl File</a>'
+                href_model = f'<a href="data:file/output_model;base64,{b64_model}" download="model.pkl">Download Trained Model .pkl File</a>'
                 st.markdown(href_model, unsafe_allow_html=True)
 
                 output_feature = pickle.dumps(feature_vec)
                 b64_feature = base64.b64encode(output_feature).decode()
-                href_feature = f'<a href="data:file/output_model;base64,{b64_feature}" download="myfile.pkl">Download Features .pkl File</a>'
+                href_feature = f'<a href="data:file/output_model;base64,{b64_feature}" download="features.pkl">Download Features .pkl File</a>'
                 st.markdown(href_feature, unsafe_allow_html=True)
         except:
             pass
@@ -302,7 +302,7 @@ def default_view(dataFile, clf):
         st.dataframe(prediction)
         output_csv = prediction.to_csv(index=False)
         b64_csv = base64.b64encode(output_csv.encode()).decode()
-        href_csv = f'<a href="data:file/output_csv;base64,{b64_csv}" download="predictions.csv">Download predictions.pkl File</a>'
+        href_csv = f'<a href="data:file/output_csv;base64,{b64_csv}" download="predictions.csv">Download predictions.csv File</a>'
         st.markdown(href_csv, unsafe_allow_html=True)
 
 
@@ -332,7 +332,7 @@ def own_model_view(dataFile, clf):
                     st.dataframe(prediction)
                     output_csv = prediction.to_csv(index=False)
                     b64_csv = base64.b64encode(output_csv.encode()).decode()
-                    href_csv = f'<a href="data:file/output_csv;base64,{b64_csv}" download="predictions.csv">Download predictions.pkl File</a>'
+                    href_csv = f'<a href="data:file/output_csv;base64,{b64_csv}" download="predictions.csv">Download predictions.csv File</a>'
                     st.markdown(href_csv, unsafe_allow_html=True)
         
         except:
