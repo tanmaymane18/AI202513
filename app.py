@@ -217,6 +217,7 @@ def load_data(params, fileName, train=True, default=True):
         Y = df['category'].astype('category').cat.codes
         cat_codes = dict(enumerate(df['category'].astype('category').cat.categories))
         st.write(cat_codes)
+        st.write(json.dump(cat_codes))
         #cat_index = pd.Dataframe(dict(enumerate(df['category'].astype('category').cat.categories)))
         #st.write(cat_index)
         #cat_json = cat_index.to_json(index=False)
