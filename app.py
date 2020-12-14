@@ -265,7 +265,7 @@ def make_predictions(predictFile, clf, cat_codes, feature_vec):
         Y = list(map(lambda x: cat_codes[str(x)], Y))
     except:
         Y = list(map(lambda x: cat_codes[int(x)], Y))
-    df = pd.DataFrame(data=list(zip(emails, body, Y)), columns=['email_name', 'body', 'Category'])
+    df = pd.DataFrame(data=list(zip(emails, Y)), columns=['email_name', 'Category'])
     return df
 
 
