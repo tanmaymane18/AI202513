@@ -286,7 +286,7 @@ def default_view(dataFile, clf):
                 clf = train(clf, x_train, x_test, y_train, y_test)
 
                 output_model = pickle.dumps(clf)
-                b64_model = base64.b64encode(output_model.encode()).decode()
+                b64_model = base64.b64encode(output_model).decode()
                 href_model = f'<a href="data:file/output_model;base64,{b64_model}" download="myfile.pkl">Download Trained Model .pkl File</a>'
                 st.markdown(href_model, unsafe_allow_html=True)
 
@@ -301,7 +301,7 @@ def default_view(dataFile, clf):
         prediction = make_predictions(predictFile, clf, cat_codes, feature_vec)
         st.dataframe(prediction)
         output_csv = prediction.to_csv(index=False)
-        b64_csv = base64.b64encode(output_csv).decode()
+        b64_csv = base64.b64encode(output_csv.encode()).decode()
         href_csv = f'<a href="data:file/output_csv;base64,{b64_csv}" download="predictions.csv">Download predictions.pkl File</a>'
         st.markdown(href_csv, unsafe_allow_html=True)
 
