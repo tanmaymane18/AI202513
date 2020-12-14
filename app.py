@@ -286,7 +286,7 @@ def default_view(dataFile, clf):
                 clf = train(clf, x_train, x_test, y_train, y_test)
 
                 output_model = pickle.dumps(clf)
-                b64_model = base64.b64encode(output_model).decode()
+                b64_model = base64.b64encode(output_model.encode()).decode()
                 href_model = f'<a href="data:file/output_model;base64,{b64_model}" download="myfile.pkl">Download Trained Model .pkl File</a>'
                 st.markdown(href_model, unsafe_allow_html=True)
 
