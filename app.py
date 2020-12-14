@@ -249,7 +249,7 @@ def default_view(dataFile, clf):
                 st.markdown(href_feature, unsafe_allow_html=True)
         except:
             pass
-    predict_data = st.sidebar.file_uploader(label='.zip containing folder of emails (.msg)')
+    predict_data = st.file_uploader(label='.zip containing folder of emails (.msg)')
     if predict_data != None:
         st.write('test success')
 
