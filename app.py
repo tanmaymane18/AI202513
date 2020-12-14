@@ -217,8 +217,8 @@ def load_data(params, fileName, train=True, default=True):
         Y = df['category'].astype('category').cat.codes
         cat_index = pd.Dataframe(dict(enumerate(df['category'].astype('category').cat.categories)))
         st.write(cat_index)
-        cat_json = cat_index.to_json(index=False)
-        st.write(cat_json)
+        #cat_json = cat_index.to_json(index=False)
+        #st.write(cat_json)
         #b64 = base64.b64encode(cat_json.encode()).decode()  # some strings <-> bytes conversions necessary here
         #href = f'<a href="data:file/json;base64,{b64}" download="myfile.pkl">Download CategoiesIndex.json File</a>'
         #st.markdown(href, unsafe_allow_html=True)
