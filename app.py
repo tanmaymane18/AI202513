@@ -261,7 +261,7 @@ def make_predictions(predictFile, clf, cat_codes):
     st.write(df.head())
     X=preprocess(df['body'], test=True)
     Y = list(clf.predict(X))
-    Y = list(map(lambda x: cat_codes[int(x)], Y))
+    Y = list(map(lambda x: cat_codes[str(x)], Y))
     st.write(type(Y))
 
 
