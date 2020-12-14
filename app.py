@@ -110,7 +110,6 @@ def create_clf(params):
         clf = pickle.load(open('./default/model.pkl', 'rb'))
     else:
         if len(model)>1:
-            st.text('Voting')
             estimator = []
             for k, v in model.items():
                 if k == 'svm':
@@ -250,6 +249,9 @@ def default_view(dataFile, clf):
                 st.markdown(href_feature, unsafe_allow_html=True)
         except:
             pass
+    predict_data = st.sidebar.file_uploader(label='.zip containing folder of emails (.msg)')
+    if predict_data != None:
+        st.write('test success')
 
 def own_model_view(dataFile, clf):
     if dataFile:
