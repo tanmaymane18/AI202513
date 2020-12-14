@@ -251,22 +251,26 @@ def default_view(dataFile, clf):
 
 def own_model_view(dataFile, clf):
     if dataFile:
-        (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name, train=True, default=False)
-        st.text("Size of training data: "+str(len(x_train)))
-        st.text("Size of Validation data: "+str(len(x_test)))
+        try:
+            (x_train, x_test, y_train, y_test), feature_vec = load_data(params, dataFile.name, train=True, default=False)
+            st.text("Size of training data: "+str(len(x_train)))
+            st.text("Size of Validation data: "+str(len(x_test)))
 
-        if st.checkbox(label='Train'):
-            clf = train(clf, x_train, x_test, y_train, y_test)
+            if st.checkbox(label='Train'):
+                clf = train(clf, x_train, x_test, y_train, y_test)
 
-            output_model = pickle.dumps(clf)
-            b64_model = base64.b64encode(output_model).decode()
-            href_model = f'<a href="data:file/output_model;base64,{b64_model}" download="myfile.pkl">Download Trained Model .pkl File</a>'
-            st.markdown(href_model, unsafe_allow_html=True)
+                output_model = pickle.dumps(clf)
+                b64_model = base64.b64encode(output_model).decode()
+                href_model = f'<a href="data:file/output_model;base64,{b64_model}" download="myfile.pkl">Download Trained Model .pkl File</a>'
+                st.markdown(href_model, unsafe_allow_html=True)
 
-            output_feature = pickle.dumps(feature_vec)
-            b64_feature = base64.b64encode(output_feature).decode()
-            href_feature = f'<a href="data:file/output_model;base64,{b64_feature}" download="myfile.pkl">Download Features .pkl File</a>'
-            st.markdown(href_feature, unsafe_allow_html=True)
+                output_feature = pickle.dumps(feature_vec)
+                b64_feature = base64.b64encode(output_feature).decode()
+                href_feature = f'<a href="data:file/output_model;base64,{b64_feature}" download="myfile.pkl">Download Features .pkl File</a>'
+                st.markdown(href_feature, unsafe_allow_html=True)
+        
+        except:
+            pass
 
 
 
