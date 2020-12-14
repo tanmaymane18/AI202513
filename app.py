@@ -136,7 +136,7 @@ def create_clf(params):
                     clf=MultinomialNB(alpha=v)
     return clf
 
-def preprocess(X, min_ngram, max_ngram, vec):
+def preprocess(X, min_ngram, max_ngram, vec, test=False):
     ps = PorterStemmer()
     Stopwords = set(stopwords.words('english'))
     X = X.apply(lambda x: re.sub(r'From:\s\S+@\S+', '', x))
@@ -151,6 +151,13 @@ def preprocess(X, min_ngram, max_ngram, vec):
     #X = X.apply(lambda x: ' '.join([word for word in x if word not in Stopwords and word in english_words_set]))
     #st.write(english_words_set)
     X = X.apply(lambda x: x.replace('original message', ''))
+
+    if test:
+        cv = TfidfVectorizer(ngram_range=(1, 2), max_features=1000, vocabulary=pickle.load(open("./default/features.pkl", "rb")))
+        X = cv.fit_transform(X).toarray()
+        X = pd.DataFrame(X, columns=cv.get_feature_names())
+        return X
+
     st.write(X)
     st.write(vec)
     if vec == 'Tf-Idf':
@@ -224,7 +231,24 @@ def extract_file(dataFile):
     print('done')
     print('./' + file_name)
     pyunpack.Archive('./' + file_name).extractall('.')
-    st.write('Extracted')
+    st.write(file_name+' Extracted')
+
+
+
+def make_predictions(predictFile, clf):
+    extract_file(predictFile)
+    folder_name = predictFile[:predictFile.index('.')]
+    emails = []
+    body = []
+    for file in os.listdir('./'+folder_name):
+        emails.append(file)
+        msg = Message('./' + folder_name + '/' + cat + '/' + file)
+        content = msg.body
+        #st.text(content)
+        body.append(content)
+    df = pd.DataFrame(data=list(zip(emails, body)), columns=['email_name', 'body'])
+    st.write(df.head())
+
 
 
 def default_view(dataFile, clf):
@@ -249,9 +273,9 @@ def default_view(dataFile, clf):
                 st.markdown(href_feature, unsafe_allow_html=True)
         except:
             pass
-    predict_data = st.file_uploader(label='.zip containing folder of emails (.msg)')
-    if predict_data != None:
-        df_predictions = make_predictions(predict_data)
+    predictFile = st.file_uploader(label='.zip containing folder of emails (.msg)')
+    if predictFile != None:
+        make_predictions(predictFile, clf)
 
 def own_model_view(dataFile, clf):
     if dataFile:
