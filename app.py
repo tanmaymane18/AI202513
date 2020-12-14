@@ -136,7 +136,7 @@ def create_clf(params):
                     clf=MultinomialNB(alpha=v)
     return clf
 
-def preprocess(X, min_ngram, max_ngram, vec, test=False):
+def preprocess(X, min_ngram=1, max_ngram=2, vec='Tf-Idf', test=False):
     ps = PorterStemmer()
     Stopwords = set(stopwords.words('english'))
     X = X.apply(lambda x: re.sub(r'From:\s\S+@\S+', '', x))
@@ -153,7 +153,7 @@ def preprocess(X, min_ngram, max_ngram, vec, test=False):
     X = X.apply(lambda x: x.replace('original message', ''))
 
     if test:
-        cv = TfidfVectorizer(ngram_range=(1, 2), max_features=1000, vocabulary=pickle.load(open("./default/features.pkl", "rb")))
+        cv = TfidfVectorizer(ngram_range=(min_ngram, max_ngram), max_features=1000, vocabulary=pickle.load(open("./default/features.pkl", "rb")))
         X = cv.fit_transform(X).toarray()
         X = pd.DataFrame(X, columns=cv.get_feature_names())
         return X
@@ -248,6 +248,7 @@ def make_predictions(predictFile, clf):
         body.append(content)
     df = pd.DataFrame(data=list(zip(emails, body)), columns=['email_name', 'body'])
     st.write(df.head())
+    st.write(preprocess(df['body'], test=True))
 
 
 
