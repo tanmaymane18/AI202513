@@ -257,12 +257,13 @@ def make_predictions(predictFile, clf, cat_codes):
         content = msg.body
         #st.text(content)
         body.append(content)
-    df = pd.DataFrame(data=list(zip(emails, body)), columns=['email_name', 'body'])
+    
     st.write(df.head())
-    X=preprocess(df['body'], test=True)
+    X=preprocess(pd.Series(body), test=True)
     Y = list(clf.predict(X))
     Y = list(map(lambda x: cat_codes[str(x)], Y))
-    st.write(type(Y))
+    df = pd.DataFrame(data=list(zip(emails, body, Y)), columns=['email_name', 'body', 'Category'])
+    return df
 
 
 
@@ -293,7 +294,8 @@ def default_view(dataFile, clf):
             pass
     predictFile = st.file_uploader(label='.zip containing folder of emails (.msg)')
     if predictFile != None:
-        make_predictions(predictFile, clf, cat_codes)
+        prediction = make_predictions(predictFile, clf, cat_codes)
+        st.dataframe(prediction)
 
 def own_model_view(dataFile, clf):
     if dataFile:
