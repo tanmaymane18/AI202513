@@ -248,7 +248,9 @@ def make_predictions(predictFile, clf):
         body.append(content)
     df = pd.DataFrame(data=list(zip(emails, body)), columns=['email_name', 'body'])
     st.write(df.head())
-    st.write(preprocess(df['body'], test=True))
+    X=preprocess(df['body'], test=True)
+    Y = clf.predict(X)
+    st.write(Y)
 
 
 
