@@ -257,8 +257,7 @@ def make_predictions(predictFile, clf, cat_codes):
         content = msg.body
         #st.text(content)
         body.append(content)
-    
-    st.write(df.head())
+        
     X=preprocess(pd.Series(body), test=True)
     Y = list(clf.predict(X))
     Y = list(map(lambda x: cat_codes[str(x)], Y))
