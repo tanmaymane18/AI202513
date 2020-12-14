@@ -184,7 +184,7 @@ def load_data(params, fileName, train=True, default=True):
     folder_name = fileName[:fileName.index('.')]
     cats = os.listdir('./'+folder_name)
     selectedCats = st.multiselect("Select Categories for Classification", cats)
-    st.markdown('Selected Categories'+selectedCats)
+    st.markdown(selectedCats)
     emails = []
     email_cat = []
     body = []
