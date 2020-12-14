@@ -136,7 +136,7 @@ def create_clf(params):
                     clf=MultinomialNB(alpha=v)
     return clf
 
-def preprocess(X, min_ngram=1, max_ngram=2, vec='Tf-Idf', test=False):
+def preprocess(X, min_ngram=1, max_ngram=2, vec='Tf-Idf', test=False, vocab=None):
     ps = PorterStemmer()
     Stopwords = set(stopwords.words('english'))
     X = X.apply(lambda x: re.sub(r'From:\s\S+@\S+', '', x))
@@ -153,7 +153,7 @@ def preprocess(X, min_ngram=1, max_ngram=2, vec='Tf-Idf', test=False):
     X = X.apply(lambda x: x.replace('original message', ''))
 
     if test:
-        cv = TfidfVectorizer(ngram_range=(min_ngram, max_ngram), max_features=1000, vocabulary=pickle.load(open("./default/features.pkl", "rb")))
+        cv = TfidfVectorizer(ngram_range=(min_ngram, max_ngram), max_features=1000, vocabulary=vocab)
         X = cv.fit_transform(X).toarray()
         X = pd.DataFrame(X, columns=cv.get_feature_names())
         return X
@@ -161,7 +161,7 @@ def preprocess(X, min_ngram=1, max_ngram=2, vec='Tf-Idf', test=False):
     st.write(X)
     st.write(vec)
     if vec == 'Tf-Idf':
-        cv = TfidfVectorizer(ngram_range=(min_ngram, max_ngram))
+        cv = TfidfVectorizer(ngram_range=(min_ngram, max_ngram), max_features=1000)
     elif vec == 'CountVector':
         cv = CountVectorizer(ngram_range=(min_ngram, max_ngram), max_features=1000)
 
@@ -247,7 +247,7 @@ def extract_file(dataFile):
 
 
 
-def make_predictions(predictFile, clf, cat_codes):
+def make_predictions(predictFile, clf, cat_codes, feature_vec):
     extract_file(predictFile)
     folder_name = predictFile.name[:predictFile.name.index('.')]
     emails = []
@@ -259,7 +259,7 @@ def make_predictions(predictFile, clf, cat_codes):
         #st.text(content)
         body.append(content)
 
-    X=preprocess(pd.Series(body), test=True)
+    X=preprocess(pd.Series(body), test=True, feature_vec)
     Y = list(clf.predict(X))
     Y = list(map(lambda x: cat_codes[str(x)], Y))
     df = pd.DataFrame(data=list(zip(emails, body, Y)), columns=['email_name', 'body', 'Category'])
@@ -271,6 +271,7 @@ def default_view(dataFile, clf):
     f = open('./default/cat_codes.json')
     cat_codes = json.load(f)
     f.close()
+    feature_vec = pickle.load(open("./default/features.pkl", "rb"))
     if dataFile:
         try:
             (x_train, x_test, y_train, y_test), feature_vec, cat_codes = load_data(params, dataFile.name, train=True)
@@ -294,7 +295,7 @@ def default_view(dataFile, clf):
             pass
     predictFile = st.file_uploader(label='.zip containing folder of emails (.msg)')
     if predictFile != None:
-        prediction = make_predictions(predictFile, clf, cat_codes)
+        prediction = make_predictions(predictFile, clf, cat_codes, feature_vec)
         st.dataframe(prediction)
 
 def own_model_view(dataFile, clf):
