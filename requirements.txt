@@ -5,6 +5,6 @@ nltk==3.5
 pyunpack==0.2.2
 scikit_learn==0.23.2
 streamlit==0.72.0
-tdqm==0.0.1
+tqdm==4.54.1
 patool==1.12
 json
