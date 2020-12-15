@@ -129,7 +129,7 @@ def create_clf(params):
             st.text('Single')
             for k, v in model.items():
                 if k == 'svm':
-                    clf = SVC(kernel=v[0],C=v[1],probability = True)
+                    clf = SVC(kernel=v[0],C=v[1])
                 elif k == 'lr':
                     clf=LogisticRegression(solver=v[0],C=v[1],multi_class='multinomial')
                 else:
