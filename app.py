@@ -22,6 +22,8 @@ import pyunpack
 from outlook_msg import Message
 from english_words import english_words_set
 import nltk
+from tdqm import tdqm
+
 nltk.download('stopwords')
 
 def get_params():
@@ -242,7 +244,7 @@ def extract_file(dataFile):
     f.close()
     print('done')
     print('./' + file_name)
-    pyunpack.Archive('./' + file_name).extractall('.')
+    st.write(tdqm(pyunpack.Archive('./' + file_name).extractall('.')))
     st.write(file_name+' Extracted')
 
 
