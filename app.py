@@ -27,6 +27,7 @@ from tqdm import tqdm
 nltk.download('stopwords')
 
 def get_params():
+    print(os.listdir())
     st.sidebar.header('Upload Your Data')
     file = st.sidebar.file_uploader(label='.zip containing folders as folder_name = labels')
     st.sidebar.header('Train Test Split')
