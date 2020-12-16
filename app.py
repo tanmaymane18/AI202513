@@ -86,6 +86,7 @@ def get_params():
     if svm or lr or nb:
         params = {'train_param': train_param, 'vectorization':vectorization, 'model_params': model_params, 'min_ngram':min_ngram, 'max_ngram':max_ngram, 'voting':voting}
     else:
+        voting = 'soft'
         params = {'train_param': train_param, 'vectorization':vectorization, 'min_ngram':min_ngram, 'max_ngram':max_ngram, 'voting':voting}
 
     return file, params
