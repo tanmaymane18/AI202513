@@ -344,6 +344,8 @@ def own_model_view(dataFile, clf):
 
 #st.multiselect("Select Categories for Classification", cats)
 dataFile, params = get_params()
+print(params)
+print(dataFile)
 try:
     extract_file(dataFile)
 except Exception as e:
