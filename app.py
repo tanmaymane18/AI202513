@@ -90,7 +90,7 @@ def get_params():
         else:
             params = {'train_param': train_param, 'vectorization':vectorization, 'min_ngram':min_ngram, 'max_ngram':max_ngram, 'voting':voting}
     except:
-        params = {'train_param': 75, 'vectorization':'Tf-Idf', 'min_ngram':1, 'max_ngram':2, 'voting':'soft'}
+        pass
 
     return file, params
 
