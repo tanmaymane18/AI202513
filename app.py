@@ -77,10 +77,13 @@ def get_params():
         nb_alpha = st.sidebar.slider(label='NB Alpha', min_value=1.0, max_value=10.0)
         model_params['nb'] = nb_alpha
 
-    if svm or lr or nb:
-        params = {'train_param': train_param, 'vectorization':vectorization, 'model_params': model_params, 'min_ngram':min_ngram, 'max_ngram':max_ngram, 'voting':voting}
-    else:
-        params = {'train_param': train_param, 'vectorization':vectorization, 'min_ngram':min_ngram, 'max_ngram':max_ngram, 'voting':voting}
+    try:
+        if svm or lr or nb:
+            params = {'train_param': train_param, 'vectorization':vectorization, 'model_params': model_params, 'min_ngram':min_ngram, 'max_ngram':max_ngram, 'voting':voting}
+        else:
+            params = {'train_param': train_param, 'vectorization':vectorization, 'min_ngram':min_ngram, 'max_ngram':max_ngram, 'voting':voting}
+    except:
+        params = {'train_param': 75, 'vectorization':'Tf-Idf', 'min_ngram':1, 'max_ngram':2, 'voting':'soft'}
 
     return file, params
 
