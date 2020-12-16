@@ -46,6 +46,8 @@ def get_params():
         #col1, col2 = st.sidebar.beta_columns(2)
         min_ngram = st.sidebar.number_input(label='min_ngrams',min_value=1, max_value=5)
         max_ngram = st.sidebar.number_input(label='max_ngrams', min_value=1, max_value=5)
+    else:
+        params = {'train_param': train_param, 'vectorization':'Tf-Idf', 'min_ngram':1, 'max_ngram':2, 'voting':'soft'}
 
 
     svm, nb, lr = False, False, False
