@@ -41,6 +41,11 @@ def get_params():
         min_ngram = col1.number_input(label='min_ngrams',min_value=1, max_value=5)
         max_ngram = col2.number_input(label='max_ngrams', min_value=1, max_value=5)
         st.sidebar.header('Model Selection')
+
+    else:
+        st.sidebar.markdown('**Upload data for training...**')
+
+
     svm, nb, lr = False, False, False
     model_params = dict()
     if not default == 'Default':
