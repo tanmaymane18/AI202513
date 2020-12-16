@@ -35,19 +35,19 @@ def get_params():
     st.sidebar.header('Model Selection')
     default = st.sidebar.radio(label='', options=['Default', 'Train your own'])
     st.sidebar.header('Vectorization')
-    col1, col2 = st.sidebar.beta_columns(2)
+    #col1, col2 = st.sidebar.beta_columns(2)
     if default == 'Default':
         vectorization = st.sidebar.selectbox(label='', options=['CountVector', 'Tf-Idf'], index=1)
         st.sidebar.header('Voting type if ensemble')
         voting = st.sidebar.selectbox(label='', options=['soft', 'hard'], index=0)
-        min_ngram = col1.number_input(label='min_ngrams',min_value=1, max_value=5, value=1)
-        max_ngram = col2.number_input(label='max_ngrams', min_value=1, max_value=5, value=2)
+        min_ngram = st.sidebar.number_input(label='min_ngrams',min_value=1, max_value=5, value=1)
+        max_ngram = st.sidebar.number_input(label='max_ngrams', min_value=1, max_value=5, value=2)
     else:
         vectorization = st.sidebar.selectbox(label='', options=['CountVector', 'Tf-Idf'])
         st.sidebar.header('Voting type if ensemble')
         voting = st.sidebar.selectbox(label='', options=['soft', 'hard'])
-        min_ngram = col1.number_input(label='min_ngrams',min_value=1, max_value=5)
-        max_ngram = col2.number_input(label='max_ngrams', min_value=1, max_value=5)
+        min_ngram = st.sidebar.number_input(label='min_ngrams',min_value=1, max_value=5)
+        max_ngram = st.sidebar.number_input(label='max_ngrams', min_value=1, max_value=5)
     
     svm, nb, lr = False, False, False
     model_params = dict()
