@@ -38,7 +38,7 @@ def get_params():
     st.sidebar.header('Model Selection')
     default = st.sidebar.radio(label='', options=['Default', 'Train your own'])
 
-    if default == 'Default':
+    if default != 'Default':
         st.sidebar.header('Vectorization')
         vectorization = st.sidebar.selectbox(label='', options=['CountVector', 'Tf-Idf'])
         st.sidebar.header('Voting type if ensemble')
