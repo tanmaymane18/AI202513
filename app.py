@@ -38,8 +38,6 @@ def get_params():
     #col1, col2 = st.sidebar.beta_columns(2)
     if default == 'Default':
         vectorization = st.sidebar.selectbox(label='', options=['CountVector', 'Tf-Idf'], index=1)
-        st.sidebar.header('Voting type if ensemble')
-        voting = st.sidebar.selectbox(label='', options=['soft', 'hard'], index=0)
         min_ngram = st.sidebar.number_input(label='min_ngrams',min_value=1, max_value=5, value=1)
         max_ngram = st.sidebar.number_input(label='max_ngrams', min_value=1, max_value=5, value=2)
     else:
