@@ -252,7 +252,7 @@ def extract_file(dataFile):
     f.close()
     print('done')
     print('./' + file_name)
-    st.progress(tqdm(pyunpack.Archive('./' + file_name).extractall('.')))
+    pyunpack.Archive('./' + file_name).extractall('.')
     st.write(file_name+' Extracted')
 
 
