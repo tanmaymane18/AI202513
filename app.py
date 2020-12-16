@@ -29,21 +29,23 @@ nltk.download('stopwords')
 def get_params():
     st.sidebar.header('Upload Your Data')
     file = st.sidebar.file_uploader(label='.zip containing folders as folder_name = labels')
-    st.sidebar.header('Model Selection')
-    default = st.sidebar.radio(label='', options=['Default', 'Train your own'])
     if file:
         st.sidebar.header('Train Test Split')
         train_param = st.sidebar.slider(label='% for training', min_value=50, max_value=80, step=5, value=70)
     else:
         st.sidebar.markdown('**Upload data for training...**')
-    
-    st.sidebar.header('Vectorization')
-    vectorization = st.sidebar.selectbox(label='', options=['CountVector', 'Tf-Idf'])
-    st.sidebar.header('Voting type if ensemble')
-    voting = st.sidebar.selectbox(label='', options=['soft', 'hard'])
-    #col1, col2 = st.sidebar.beta_columns(2)
-    min_ngram = st.sidebar.number_input(label='min_ngrams',min_value=1, max_value=5)
-    max_ngram = st.sidebar.number_input(label='max_ngrams', min_value=1, max_value=5)
+
+    st.sidebar.header('Model Selection')
+    default = st.sidebar.radio(label='', options=['Default', 'Train your own'])
+
+    if default == 'Default':
+        st.sidebar.header('Vectorization')
+        vectorization = st.sidebar.selectbox(label='', options=['CountVector', 'Tf-Idf'])
+        st.sidebar.header('Voting type if ensemble')
+        voting = st.sidebar.selectbox(label='', options=['soft', 'hard'])
+        #col1, col2 = st.sidebar.beta_columns(2)
+        min_ngram = st.sidebar.number_input(label='min_ngrams',min_value=1, max_value=5)
+        max_ngram = st.sidebar.number_input(label='max_ngrams', min_value=1, max_value=5)
 
 
     svm, nb, lr = False, False, False
