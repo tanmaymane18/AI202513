@@ -189,7 +189,7 @@ def train(clf, x_train, x_test, y_train, y_test):
     values = x_train.values
     #plt.scatter(x_train.shape, y)
     st.markdown("**Validation Accuracy :**")
-    st.write(round(accuracy_score(y_test, pred), 2))
+    st.write(round(accuracy_score(y_test, pred)*100, 2))
     st.markdown("**Confusion Matrix:**")
     st.write(confusion_matrix(y_test, pred))
     st.markdown('**Classification Report**')
