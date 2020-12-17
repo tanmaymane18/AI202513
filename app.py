@@ -167,6 +167,8 @@ def preprocess(X, min_ngram=1, max_ngram=1, vec='Tf-Idf', test=False, vocab=None
 
     if test:
         #st.write('ngrams:'+max_ngram)
+        st.text(vec)
+        st.text(max_ngram)
         cv = CountVectorizer(ngram_range=(min_ngram, max_ngram), max_features=1000, vocabulary=vocab)
         X = cv.fit_transform(X).toarray()
         X = pd.DataFrame(X, columns=cv.get_feature_names())
