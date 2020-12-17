@@ -239,7 +239,7 @@ def load_data(params, fileName, train=True, default=True):
         href = f'<a href="data:file/json;base64,{b64}" download="myfile.json">Download CategoiesIndex.json File</a>'
         st.markdown(href, unsafe_allow_html=True)
         #st.markdown('hello')
-        return train_test_split(X, Y, test_size=(100 - train_param) / 100, random_state=42, shuffle=False), feature_vec, rt_cat_codes
+        return train_test_split(X, Y, test_size=(100 - train_param) / 100, random_state=42, shuffle=True), feature_vec, rt_cat_codes
 
 #def load_new_data(fileName):
 
