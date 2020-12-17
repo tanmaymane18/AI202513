@@ -155,7 +155,7 @@ def preprocess(X, min_ngram=1, max_ngram=1, vec='Tf-Idf', test=False, vocab=None
     X = X.apply(lambda x: re.sub(r'To:\s\S+@\S+', '', x))
     X = X.apply(lambda x: re.sub(r'Cc:\s\S+@\S+', '', x))
     X = X.apply(lambda x: re.sub(r'Sent:\s.*', '', x))
-    X = X.apply(lambda x: re.sub(r'Subject:', '', x))
+    X = X.apply(lambda x: re.sub(r'Subject:\s\S+', '', x))
     X = X.apply(lambda x: re.sub('\S+@\S+', ' ', str(x)))
     X = X.apply(lambda x: re.sub('[^a-zA-Z]', ' ', str(x)))
     X = X.apply(lambda x: x.lower().replace('original message', ''))
