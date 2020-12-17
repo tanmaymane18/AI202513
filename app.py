@@ -148,7 +148,7 @@ def create_clf(params):
                     clf=MultinomialNB(alpha=v)
     return clf
 
-def preprocess(X, min_ngram=1, max_ngram=1, vec='Tf-Idf', test=False, vocab=None):
+def preprocess(X, min_ngram=1, max_ngram=1, vec='CountVector', test=False, vocab=None):
     ps = PorterStemmer()
     Stopwords = set(stopwords.words('english'))
     X = X.apply(lambda x: re.sub(r'From:\s\S+@\S+', '', x))
