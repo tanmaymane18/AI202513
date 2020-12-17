@@ -160,7 +160,7 @@ def preprocess(X, min_ngram=1, max_ngram=2, vec='Tf-Idf', test=False, vocab=None
     X = X.apply(lambda x: re.sub('[^a-zA-Z]', ' ', str(x)))
     X = X.apply(lambda x: x.lower().replace('original message', ''))
     X = X.apply(lambda x: x.lower().split())
-    X = X.apply(lambda x: ' '.join([ps.stem(word) for word in x if word not in Stopwords and word in english_words_set and word not in common_words and not word ' ']))
+    X = X.apply(lambda x: ' '.join([ps.stem(word) for word in x if word not in Stopwords and word in english_words_set and word not in common_words and word not ' ']))
     #X = X.apply(lambda x: ' '.join([word for word in x if word not in Stopwords and word in english_words_set]))
     #st.write(english_words_set)
 
