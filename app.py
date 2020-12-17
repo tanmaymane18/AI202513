@@ -26,6 +26,8 @@ from tqdm import tqdm
 
 nltk.download('stopwords')
 
+common_words = ['let know', 'date birth', 'account', 'help', 'pension', 'pension scheme', 'forward', 'e mail', 'team', 'wrote', 'receive', 'name', 'wish', 'many', 'information contact', 'process', 'able', 'password', 'yet', 'send', 'take', 'ask', 'hesitate contact', 'support e', 'contact support', 'know', 'look forward', 'message', 'last', 'policy', 'made', 'one', 'scheme', 'time', 'z', 'lump sum', 'form', 'document', 'pension fund', 'provide', 'require information', 'plan', 'home', 'paid', 'within', 'copy', 'post', 'note', 'confirm', 'member', 'call', 'address', 'sent', 'response', 'original', 'mail us', 'need', 'advise', 'road street', 'abc', 'test', 'xyz', 'hello', 'hi', 'good', 'morning', 'afternoon', 'evening', 'kind', 'dear', 'sir', 'thank', 'please', 'regards']
+
 def get_params():
     st.sidebar.write(os.listdir())
     st.sidebar.header('Upload Your Data')
@@ -158,7 +160,7 @@ def preprocess(X, min_ngram=1, max_ngram=2, vec='Tf-Idf', test=False, vocab=None
     X = X.apply(lambda x: re.sub('[^a-zA-Z]', ' ', str(x)))
     X = X.apply(lambda x: x.lower().replace('original message', ''))
     X = X.apply(lambda x: x.lower().split())
-    X = X.apply(lambda x: ' '.join([ps.stem(word) for word in x if word not in Stopwords and word in english_words_set and word not in ['abc','test','xyz','hello','hi','good','morning','afternoon','evening','kind','dear','sir','thank','please', 'regards']]))
+    X = X.apply(lambda x: ' '.join([ps.stem(word) for word in x if word not in Stopwords and word in english_words_set and word not in common_words]))
     #X = X.apply(lambda x: ' '.join([word for word in x if word not in Stopwords and word in english_words_set]))
     #st.write(english_words_set)
 
