@@ -25,8 +25,10 @@ import nltk
 from tqdm import tqdm
 
 nltk.download('stopwords')
-
-common_words = ['let', 'know', 'date', 'birth', 'account', 'help', 'pension', 'pension', 'scheme', 'forward', 'e', 'mail', 'team', 'wrote', 'receive', 'name', 'wish', 'many', 'information', 'contact', 'process', 'able', 'password', 'yet', 'send', 'take', 'ask', 'hesitate contact', 'support e', 'contact support', 'know', 'look forward', 'message', 'last', 'policy', 'made', 'one', 'scheme', 'time', 'z', 'lump sum', 'form', 'document', 'pension fund', 'provide', 'require information', 'plan', 'home', 'paid', 'within', 'copy', 'post', 'note', 'confirm', 'member', 'call', 'address', 'sent', 'response', 'original', 'mail us', 'need', 'advise', 'road street', 'abc', 'test', 'xyz', 'hello', 'hi', 'good', 'morning', 'afternoon', 'evening', 'kind', 'dear', 'sir', 'thank', 'please', 'regards']
+common_words = []
+with open('./common_words.txt', 'r') as file:
+    common_words = file.read().split()
+file.close()
 
 def get_params():
     st.sidebar.write(os.listdir())
