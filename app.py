@@ -174,9 +174,9 @@ def preprocess(X, min_ngram=1, max_ngram=2, vec='Tf-Idf', test=False, vocab=None
     st.write(X)
     st.write(vec)
     if vec == 'Tf-Idf':
-        cv = TfidfVectorizer(ngram_range=(min_ngram, max_ngram), max_features=1000)
+        cv = TfidfVectorizer(ngram_range=(min_ngram, max_ngram), max_features=2000)
     elif vec == 'CountVector':
-        cv = CountVectorizer(ngram_range=(min_ngram, max_ngram), max_features=1000)
+        cv = CountVectorizer(ngram_range=(min_ngram, max_ngram), max_features=2000)
 
     X = cv.fit_transform(X).toarray()
     #pickle.dump(cv.vocabulary_, open("feature.pkl", "wb"))
