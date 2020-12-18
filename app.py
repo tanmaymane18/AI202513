@@ -292,6 +292,7 @@ def default_view(dataFile, clf):
     if dataFile:
         try:
             (x_train, x_test, y_train, y_test), feature_vec, cat_codes = load_data(params, dataFile.name, train=True)
+            st.markdown('**Train-Test Split ✂️ **')
             st.text("Size of training data: "+str(len(x_train)))
             st.text("Size of Validation data: "+str(len(x_test)))
 
@@ -324,6 +325,7 @@ def own_model_view(dataFile, clf):
     if dataFile:
         try:
             (x_train, x_test, y_train, y_test), feature_vec, cat_codes = load_data(params, dataFile.name, train=True, default=False)
+            st.markdown('**Train-Test Split ✂️ **')
             st.text("Size of training data: "+str(len(x_train)))
             st.text("Size of Validation data: "+str(len(x_test)))
 
