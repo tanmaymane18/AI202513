@@ -298,7 +298,7 @@ def default_view(dataFile, clf):
             st.text("Size of Validation data: "+str(len(x_test)))
 
 
-            if st.checkbox(label='Train'):
+            if st.checkbox(label='Train 🏃‍♂️'):
                 clf = train(clf, x_train, x_test, y_train, y_test)
 
                 output_model = pickle.dumps(clf)
@@ -330,7 +330,7 @@ def own_model_view(dataFile, clf):
             st.text("Size of training data: "+str(len(x_train)))
             st.text("Size of Validation data: "+str(len(x_test)))
 
-            if st.checkbox(label='Train'):
+            if st.checkbox(label='Train 🏃‍♂️'):
                 clf = train(clf, x_train, x_test, y_train, y_test)
 
                 output_model = pickle.dumps(clf)
