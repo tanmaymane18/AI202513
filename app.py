@@ -51,10 +51,10 @@ def get_params():
     svm, nb, lr = False, False, False
     model_params = dict()
     if not default == 'Default':
+        st.sidebar.header('Available Models: 🧾')
         svm = st.sidebar.checkbox(label='SVM')
         nb = st.sidebar.checkbox(label='MultiNomial nb')
         lr = st.sidebar.checkbox(label='Logistic Regression')
-        st.sidebar.header('Hyperparameter Tuning 🔧')
     else:
         #'''st.sidebar.header('Hyperparameter Tuning')
         #svm_kernel = st.sidebar.selectbox(label='SVM Kernel', options=['rbf', 'linear', 'poly', 'sigmoid'])
@@ -69,6 +69,8 @@ def get_params():
         #model_params['nb'] = nb_alpha'''
         pass
 
+    if svm or lr or nb:
+        st.sidebar.header('Hyperparameter Tuning 🔧')
 
     if svm:
         svm_kernel = st.sidebar.selectbox(label='SVM Kernel', options=['rbf', 'linear', 'poly', 'sigmoid'])
