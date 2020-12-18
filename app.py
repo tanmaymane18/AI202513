@@ -32,11 +32,11 @@ def get_params():
     st.sidebar.write(os.listdir())
     st.sidebar.header('Upload Your Data 🗂️')
     file = st.sidebar.file_uploader(label='.zip containing folders as folder_name = labels')
-    st.sidebar.header('Train Test Split')
+    st.sidebar.header('Train Test Split ✂️')
     train_param = st.sidebar.slider(label='% for training', min_value=50, max_value=80, step=5, value=70)
-    st.sidebar.header('Model Selection')
+    st.sidebar.header('Model Selection 🤖')
     default = st.sidebar.radio(label='', options=['Default', 'Train your own'])
-    st.sidebar.header('Vectorization')
+    st.sidebar.header('Vectorization 💬')
     #col1, col2 = st.sidebar.beta_columns(2)
     if default == 'Default':
         vectorization = st.sidebar.selectbox(label='', options=['CountVector', 'Tf-Idf'])
@@ -44,7 +44,6 @@ def get_params():
         max_ngram = st.sidebar.number_input(label='max_ngrams', min_value=1, max_value=5)
     else:
         vectorization = st.sidebar.selectbox(label='', options=['CountVector', 'Tf-Idf'])
-        st.sidebar.header('Voting type if ensemble')
         voting = st.sidebar.selectbox(label='', options=['soft', 'hard'])
         min_ngram = st.sidebar.number_input(label='min_ngrams',min_value=1, max_value=5)
         max_ngram = st.sidebar.number_input(label='max_ngrams', min_value=1, max_value=5)
@@ -55,7 +54,7 @@ def get_params():
         svm = st.sidebar.checkbox(label='SVM')
         nb = st.sidebar.checkbox(label='MultiNomial nb')
         lr = st.sidebar.checkbox(label='Logistic Regression')
-        st.sidebar.header('Hyperparameter Tuning')
+        st.sidebar.header('Hyperparameter Tuning 🔧')
     else:
         #'''st.sidebar.header('Hyperparameter Tuning')
         #svm_kernel = st.sidebar.selectbox(label='SVM Kernel', options=['rbf', 'linear', 'poly', 'sigmoid'])
