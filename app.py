@@ -224,6 +224,7 @@ def load_data(params, fileName, train=True, default=True):
         st.markdown('**Loaded Data: **')
         st.dataframe(df.head())
         st.write(df.aggregate(['count']))
+        st.write(df.describe())
 
         X, feature_vec = preprocess(df['body'], min_ngram, max_ngram, vec)
         
