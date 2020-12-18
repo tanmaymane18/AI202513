@@ -324,7 +324,7 @@ def default_view(dataFile, clf):
         b64_csv = base64.b64encode(output_csv.encode()).decode()
         href_csv = f'<a href="data:file/output_csv;base64,{b64_csv}" download="predictions.csv">Download predictions.csv File</a>'
         st.markdown(href_csv, unsafe_allow_html=True)
-        st.ballons()
+        st.balloons()
 
 
 def own_model_view(dataFile, clf):
@@ -357,7 +357,7 @@ def own_model_view(dataFile, clf):
                     b64_csv = base64.b64encode(output_csv.encode()).decode()
                     href_csv = f'<a href="data:file/output_csv;base64,{b64_csv}" download="predictions.csv">Download predictions.csv File</a>'
                     st.markdown(href_csv, unsafe_allow_html=True)
-                    st.ballons()
+                    st.balloons()
         
         except:
             pass
