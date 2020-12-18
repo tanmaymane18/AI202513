@@ -203,7 +203,7 @@ def load_data(params, fileName, train=True, default=True):
     min_ngram, max_ngram = params['min_ngram'], params['max_ngram']
     folder_name = fileName[:fileName.index('.')]
     cats = os.listdir('./'+folder_name)
-    st.markdown("**Select Categories for Classification**")
+    st.info("**Select Categories for Classification ✔️**")
     selectedCats = st.multiselect("", cats)
     emails = []
     email_cat = []
