@@ -94,7 +94,7 @@ def get_params():
 
 
 def display_model_summary(params):
-    st.header('Training Parameters:')
+    st.header('Training Parameters 🔖:')
     train_param = params['train_param']
     vec = params['vectorization']
     model = params.get('model_params', 'Default')
