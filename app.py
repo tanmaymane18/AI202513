@@ -223,7 +223,7 @@ def load_data(params, fileName, train=True, default=True):
     if len(selectedCats)>1:
         st.markdown('**Loaded Data: **')
         st.dataframe(df.head())
-        st.markdown('**Basic Stats: **')
+        st.markdown('**Basic Stats 📈: **')
         st.write(df.describe())
 
         X, feature_vec = preprocess(df['body'], min_ngram, max_ngram, vec)
