@@ -359,6 +359,8 @@ def own_model_view(dataFile, clf):
         
         except:
             pass
+    else:
+        st.warning('Upload Data For Training ⚠️')
 
 
 
