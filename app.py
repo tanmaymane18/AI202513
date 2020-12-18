@@ -222,6 +222,7 @@ def load_data(params, fileName, train=True, default=True):
     #df.reset_index(inplace=True)
     #df.drop(columns=['index'], inplace=True)
     if len(selectedCats)>1:
+        st.markdown('**Loaded Data: **')
         st.dataframe(df.head())
         st.write(df.describe())
 
@@ -241,7 +242,7 @@ def load_data(params, fileName, train=True, default=True):
         st.markdown(href, unsafe_allow_html=True)
         #st.markdown('hello')
         return train_test_split(X, Y, test_size=(100 - train_param) / 100, random_state=42, shuffle=True), feature_vec, rt_cat_codes
-    st.markdown('**Select more than 1 category for training ⚙️**')
+    st.warning('**Select more than 1 category for training ⚙️**')
 
 #def load_new_data(fileName):
 
