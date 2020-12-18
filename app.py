@@ -315,6 +315,7 @@ def default_view(dataFile, clf):
                 st.markdown(href_feature, unsafe_allow_html=True)
         except:
             pass
+    st.markdown('**Make Your Predictions 🔮 **')
     predictFile = st.file_uploader(label='.zip containing folder of emails (.msg)')
     if predictFile != None:
         prediction = make_predictions(predictFile, clf, cat_codes, feature_vec)
@@ -346,6 +347,7 @@ def own_model_view(dataFile, clf):
                 href_feature = f'<a href="data:file/output_model;base64,{b64_feature}" download="myfile.pkl">Download Features .pkl File</a>'
                 st.markdown(href_feature, unsafe_allow_html=True)
 
+                st.markdown('**Make Your Predictions 🔮 **')
                 predictFile = st.file_uploader(label='.zip containing folder of emails (.msg)')
                 if predictFile != None:
                     prediction = make_predictions(predictFile, clf, cat_codes, feature_vec)
