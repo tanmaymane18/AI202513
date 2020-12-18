@@ -39,9 +39,9 @@ def get_params():
     st.sidebar.header('Vectorization')
     #col1, col2 = st.sidebar.beta_columns(2)
     if default == 'Default':
-        vectorization = st.sidebar.selectbox(label='', options=['CountVector', 'Tf-Idf'], index=1)
-        min_ngram = st.sidebar.number_input(label='min_ngrams',min_value=1, max_value=5, value=1)
-        max_ngram = st.sidebar.number_input(label='max_ngrams', min_value=1, max_value=5, value=2)
+        vectorization = st.sidebar.selectbox(label='', options=['CountVector', 'Tf-Idf'])
+        min_ngram = st.sidebar.number_input(label='min_ngrams',min_value=1, max_value=5)
+        max_ngram = st.sidebar.number_input(label='max_ngrams', min_value=1, max_value=5)
     else:
         vectorization = st.sidebar.selectbox(label='', options=['CountVector', 'Tf-Idf'])
         st.sidebar.header('Voting type if ensemble')
