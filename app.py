@@ -171,8 +171,8 @@ def preprocess(X, min_ngram=1, max_ngram=1, vec='CountVector', test=False, vocab
         X = pd.DataFrame(X, columns=cv.get_feature_names())
         return X
 
-    st.write(X)
-    st.write(vec)
+    #st.write(X)
+    #st.write(vec)
     if vec == 'Tf-Idf':
         cv = TfidfVectorizer(ngram_range=(min_ngram, max_ngram), max_features=1000)
     elif vec == 'CountVector':
