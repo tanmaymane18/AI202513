@@ -231,7 +231,7 @@ def load_data(params, fileName, train=True, default=True):
         Y = df['category'].astype('category').cat.codes
         rt_cat_codes = dict(enumerate(df['category'].astype('category').cat.categories))
         cat_codes = json.dumps(rt_cat_codes)
-        st.write(pd.DataFrame(cat_codes))
+        st.write(pd.DataFrame(rt_cat_codes))
         #st.write(json.dumps(cat_codes))
         #cat_index = pd.Dataframe(dict(enumerate(df['category'].astype('category').cat.categories)))
         #st.write(cat_index)
