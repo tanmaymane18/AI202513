@@ -137,7 +137,6 @@ def create_clf(params):
             clf = VotingClassifier(estimators=estimator, voting=params['voting'])
 
         else:
-            st.text('Single')
             for k, v in model.items():
                 if k == 'svm':
                     clf = SVC(kernel=v[0],C=v[1])
