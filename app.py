@@ -223,7 +223,7 @@ def load_data(params, fileName, train=True, default=True):
     if len(selectedCats)>1:
         st.success('**Data Loaded Successfully**')
         st.dataframe(df.head())
-        st.markdown('**Basic Stats 📈: **')
+        st.markdown('**Basic Stats 📈 **')
         st.write(df.describe())
 
         X, feature_vec = preprocess(df['body'], min_ngram, max_ngram, vec)
@@ -231,7 +231,7 @@ def load_data(params, fileName, train=True, default=True):
         Y = df['category'].astype('category').cat.codes
         rt_cat_codes = dict(enumerate(df['category'].astype('category').cat.categories))
         cat_codes = json.dumps(rt_cat_codes)
-        st.markdown('**Basic Stats 📈: **')
+        st.markdown('**Encodings 🔢 **')
         st.write(pd.DataFrame(rt_cat_codes.items(), columns=['Encoding', 'Category']))
         #st.write(json.dumps(cat_codes))
         #cat_index = pd.Dataframe(dict(enumerate(df['category'].astype('category').cat.categories)))
