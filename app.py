@@ -221,7 +221,7 @@ def load_data(params, fileName, train=True, default=True):
     #df.reset_index(inplace=True)
     #df.drop(columns=['index'], inplace=True)
     if len(selectedCats)>1:
-        st.Success('**Data Loaded Successfully**')
+        st.success('**Data Loaded Successfully**')
         st.dataframe(df.head())
         st.markdown('**Basic Stats 📈: **')
         st.write(df.describe())
