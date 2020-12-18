@@ -22,7 +22,7 @@ import pyunpack
 from outlook_msg import Message
 from english_words import english_words_set
 import nltk
-from tqdm import tqdm
+#from tqdm import tqdm
 
 nltk.download('stopwords')
 
