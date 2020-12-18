@@ -30,7 +30,7 @@ common_words = ['let', 'know', 'date', 'birth', 'account', 'help', 'pension', 'p
 
 def get_params():
     st.sidebar.write(os.listdir())
-    st.sidebar.header('Upload Your Data')
+    st.sidebar.header('Upload Your Data 🗂️')
     file = st.sidebar.file_uploader(label='.zip containing folders as folder_name = labels')
     st.sidebar.header('Train Test Split')
     train_param = st.sidebar.slider(label='% for training', min_value=50, max_value=80, step=5, value=70)
