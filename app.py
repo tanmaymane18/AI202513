@@ -99,9 +99,9 @@ def display_model_summary(params):
     vec = params['vectorization']
     model = params.get('model_params', 'Default')
     attr, val = st.beta_columns(2)
-    attr.text('Split %: ')
-    attr.text('Vectorization: ')
-    attr.text('Model: ')
+    attr.text('**Split %: **')
+    attr.text('**Vectorization: **')
+    attr.text('**Model: **')
     val.text('Train: '+str(train_param)+' Test: '+str(100-train_param))
     val.text(vec)
     if model == 'Default':
